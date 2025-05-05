@@ -6,7 +6,7 @@ function App(){
     }
 
     const handleClick3 = (e)=>{
-        alert('OK 3'+ e);
+        alert('OK 3:'+ e);
         console.log(e);
     }
 
