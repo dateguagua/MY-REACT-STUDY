@@ -7,7 +7,7 @@ function Cart() {
   const [items, setItems] = useState([]);
 
   const handleAdd = () => {
-    const newItem = { name, price: Number(price) }; //item裡面沒有index
+    const newItem = { name, price: Number(price) };
     //const newItem = { name, price: price*1 };
     setItems([...items, newItem]);
     setName("");
@@ -15,10 +15,9 @@ function Cart() {
   };
 
   const handleDelete = (index) => {
-     // 利用 filter 來過濾不需要的資料
-     // i 是指index的位置
-     //setItems(items.filter((item, i) => i !== index)); 兩個一樣意思代表忽略他不做
-     setItems(items.filter((_, i) => i !== index));
+    // 利用 filter 來過濾不需要的資料
+    // i 是指 index, 除非 Item 裡面有另外設計 id (請參考 TodoList 練習)
+    setItems(items.filter((item, i) => i !== index));
   }
 
   const total = items.reduce((sum, item) => sum + item.price, 0);
@@ -42,21 +41,21 @@ function Cart() {
       <button onClick={handleAdd}>新增</button>
 
       <h3>購物車內容:</h3>
-      {/* 如果沒有商品就顯示無商品 有商品會渲染商品 */}
       <ul>
         {
-        items.length === 0 ? 
-        (
-          <li>無商品</li>
-        ) : 
-        (
-          items.map((item, index) => (
-            <li key={index}>
-              {index + 1}. {item.name} - ${item.price}
-              <button onClick={()=> handleDelete(index)}>X</button>
-            </li>
-          ))
-        )
+            items.length === 0 ? 
+            (
+                <li>無商品</li>
+            )
+            : 
+            (
+                items.map((item, index) => (
+                    <li key={index}>
+                        {index + 1}. {item.name} - ${item.price}
+                        <button onClick={() => handleDelete(index)}>X</button>
+                    </li>
+                ))
+            )
         }
       </ul>
 
